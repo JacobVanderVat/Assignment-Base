@@ -1,23 +1,34 @@
-const food = [];
+async function windowActions() {
+  const search = document.querySelector("input");
+  const form = document.querySelector("control");
 
-fetch ("/api")
-.then(blob => blob.json())
-.then(stuff => food.push(...stuff))
+  const request = await fetch("/api");
+  const data = await request.json();
 
-function findMatches (wordToMatch, food){
+
+  form.addEventListener("keyup", async (event) => {
+    event.preventDefault();
     
-    return food.filter(place => {
-        const regex = new RegExp(wordToMatch, 'gi');
-        return place.zip.match(regex)
-    });
-}
+});
+   
+    /*const food = [];
 
-function displayMatches() {
-    const matchArray = findMatches(this.value, food);
-    const html = matchArray.map(place => {
-        const regex = new RegExp(this.value, 'gi');
-        const zipper = place.zip.replace(regex, `<span class = h1>${this.value}</span>`)
-        return `
+    function findMatches(wordToMatch, food) {
+      return food.filter((place) => {
+        const regex = new RegExp(wordToMatch, "gi");
+        return place.zip.match(regex);
+      });
+    }
+    function displayMatches() {
+      const matchArray = findMatches(this.value, food);
+      const html = matchArray
+        .map((place) => {
+          const regex = new RegExp(this.value, "gi");
+          const zipper = place.zip.replace(
+            regex,
+            `<span class = h1>${this.value}</span>`
+          );
+          return `
         <li>
             <span class="name">${zipper}</span>
             <span class="category">${place.category}</span>
@@ -26,12 +37,20 @@ function displayMatches() {
             <span class="zip">${place.zip}</span>
         </li>
         `;
-    }).join('');
-    suggestions.innerHTML = html;
+        })
+        .join("");
+      suggestions.innerHTML = html;
+    } */
+  
 }
 
-const searchInput = document.querySelector('.input');
-const suggestions = document.querySelector('.suggestions');
+window.onload = windowActions;
 
-//searchInput.addEventListener('change', displayMatches);
-searchInput.addEventListener('keyup', displayMatches);
+
+   // const request = await fetch("/api", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ data: searchInput.value }),
+    // });
