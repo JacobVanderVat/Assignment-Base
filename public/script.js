@@ -6,7 +6,6 @@ async function windowActions() {
 
   const request = await fetch('/api');
   const data = await request.json();
-  console.log(data);
 
   form.addEventListener("keyup", async (event) => {
     event.preventDefault();
