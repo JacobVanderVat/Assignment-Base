@@ -6,17 +6,24 @@ async function windowActions() {
 
   const request = await fetch('/api');
   const data = await request.json();
-  //console.table(data);
+  console.log(data);
 
   form.addEventListener("keyup", async (event) => {
     event.preventDefault();
-    console.log("submit fired", search.value);
-    const filtered = data.filter((record) => record.city.toUpperCase() === search.value.toUpperCase());
+    console.log("submit fired");
+    console.log(search.value);
+    const filtered = data.filter(record => record.zip === search.value);
     console.log(filtered);
     filtered.forEach((item) => {
         const appendItem = document.createElement("li");
-        appendItem.innerText = item.city;
+        appendItem.innerText = item.name;
         targetList.append(appendItem);
+        appendItem.innerText = item.category;
+        targetList.append(appendItem);
+        //appendItem.innerText = item.address_line_1;
+        //targetList.append(appendItem);
+        //appendItem.innerText = item.zip;
+        //targetList.append(appendItem);
     });
   });
 
@@ -27,6 +34,3 @@ async function windowActions() {
 
 }
 window.onload = windowActions;
-
-
-//record.city.toUpperCase() === search.value.toUpperCase()

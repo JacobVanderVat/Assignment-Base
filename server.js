@@ -29,7 +29,7 @@ app.route('/api')
     console.log('data from fetch', json[0]);
     res.json(json);
     //res.send(`Lab 5 for ${process.env.NAME}`);
-    console.log(`Lab 5 for ${process.env.NAME}`);
+    //console.log(`Lab 5 for ${process.env.NAME}`);
   })
   .post(async (req, res) => {
     console.log('POST request detected');
