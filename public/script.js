@@ -12,15 +12,16 @@ async function windowActions() {
   body: JSON.stringify({data: search.value})
   });
   const data = await request.json();
-  //console.table(data);
+  console.table(data);
+  
   form.addEventListener("keyup", async (event) => {
     event.preventDefault();
     console.log("submit fired", search.value);
-    const filtered = data.filter((record) => record.city.toUpperCase() === search.value.toUpperCase());
-    filtered.forEach((item) => {
-        const appendItem = document.createElement("li");
-        appendItem.innerText = item.city;
-        targetList.append(appendItem);
+  const filtered = data.filter((record) => record.city.toUpperCase() === search.value.toUpperCase());
+  filtered.forEach((item) => {
+      const appendItem = document.createElement("li");
+      appendItem.innerText = item.city;
+      targetList.append(appendItem);
     });
   });
 
