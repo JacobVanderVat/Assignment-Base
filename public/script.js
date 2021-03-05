@@ -2,15 +2,21 @@ async function windowActions() {
   const search = document.querySelector(".input");
   const form = document.querySelector(".userform");
 
-  const request = await fetch("/api");
-  const data = await request.json();
+  const request = await fetch('/api', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  
+  body: JSON.stringify({data: search.value})
+  });
+  //const data = await request.json();
 
   form.addEventListener("keyup", async (event) => {
     event.preventDefault();
     console.log("submit fired");
-});
-   
-    /*const food = [];
+    const food = [];
+    displayMatches();
 
     function findMatches(wordToMatch, food) {
       return food.filter((place) => {
@@ -39,7 +45,10 @@ async function windowActions() {
         })
         .join("");
       suggestions.innerHTML = html;
-    } */
+    } 
+});
+   
+    
   
 }
 
