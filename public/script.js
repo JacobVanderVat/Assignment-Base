@@ -1,14 +1,13 @@
 async function windowActions() {
-  const search = document.querySelector("input");
-  const form = document.querySelector("control");
+  const search = document.querySelector(".input");
+  const form = document.querySelector(".userform");
 
   const request = await fetch("/api");
   const data = await request.json();
 
-
   form.addEventListener("keyup", async (event) => {
     event.preventDefault();
-    
+    console.log("submit fired");
 });
    
     /*const food = [];
