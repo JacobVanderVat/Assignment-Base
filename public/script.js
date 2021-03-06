@@ -6,31 +6,33 @@ async function windowActions() {
 
   const request = await fetch("/api");
   const data = await request.json();
-
-  form.addEventListener("keyup", async (event) => {
-    event.preventDefault();
+  //event.preventDefault();
+  
+  
+  function displayMatches (){
     console.log("submit fired");
     const filtered = data.filter((record) =>
-      record.zip.includes(event.target.value)
+    record.zip.includes(event.target.value)
     );
     //console.log(filtered);
-    filtered.forEach(item => {
-      const appendItem = document.createElement("li");
-      appendItem.classList.add("list-item");
-      appendItem.innerHTML = `
-      <h2> ${item.name} </h2>
-      <p> ${item.category} </p>
-      <p> ${item.address_line_1} </p>
-      <p> ${item.city} </p>
-      <p> ${item.zip} </p>
+    const html = filtered.map(zip => {
+      return `
+      <li>
+        <span class = "name">${zip.name}</span>
+        <span class = "notName">${zip.category}</span>
+        <span class = "notName">${zip.address_line_1}</span>
+        <span class = "notName">${zip.city}</span>
+        <span class = "notName">${zip.zip}</span>
       `;
-      targetList.append(appendItem);
-    });
-  })
+    }).join('');
+    targetList.innerHTML = html;
+  };
 
   search.addEventListener('input', (event) => {
   console.log('input', event.target.value);
   });
+
+form.addEventListener("keyup", displayMatches);
 }
 window.onload = windowActions;
 
