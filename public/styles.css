@@ -1,0 +1,19 @@
+ul {
+  margin: 20px;
+  background-color:black;
+  display: block;
+}
+li {
+  display: block;
+  margin: 10px;
+  background-color: gray;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(114,114,227,1) 35%, rgb(80, 117, 124) 100%); 
+  font-family: Trirong; 
+  margin: 10px; 
+  text-align: center; 
+  column-count: 1; 
+  padding: 10px;
+}
+.name {
+  font-weight: bold;
+}

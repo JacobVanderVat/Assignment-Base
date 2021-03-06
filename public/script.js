@@ -7,33 +7,32 @@ async function windowActions() {
   const request = await fetch("/api");
   const data = await request.json();
   //event.preventDefault();
-  
-  
-  function displayMatches (){
+
+  function displayMatches() {
     console.log("submit fired");
     const filtered = data.filter((record) =>
-    record.zip.includes(event.target.value)
+      record.zip.includes(event.target.value)
     );
     //console.log(filtered);
-    const html = filtered.map(zip => {
-      return `
+    const html = filtered
+      .map((zip) => {
+        return `
       <li>
-        <span class = "name">${zip.name}</span>
-        <span class = "notName">${zip.category}</span>
-        <span class = "notName">${zip.address_line_1}</span>
-        <span class = "notName">${zip.city}</span>
-        <span class = "notName">${zip.zip}</span>
+        <div class = "name">${zip.name}:</div>
+        <div>${zip.category}</div>
+        <div>${zip.address_line_1}, ${zip.city}</div>
+        <div>${zip.zip}</div>
+      </li>
       `;
-    }).join('');
+      })
+      .join("");
     targetList.innerHTML = html;
-  };
+  }
 
-  search.addEventListener('input', (event) => {
-  console.log('input', event.target.value);
+  search.addEventListener("input", (event) => {
+    console.log("input", event.target.value);
   });
 
-form.addEventListener("keyup", displayMatches);
+  form.addEventListener("keyup", displayMatches);
 }
 window.onload = windowActions;
-
-
